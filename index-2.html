@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>زندگی با حدیث</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#f6f1e6;color:#17352d;line-height:1.9}
+header{background:linear-gradient(135deg,#123f35,#1f6a58);color:#fff;padding:34px 18px;text-align:center}
+header h1{margin:0;font-size:32px}header p{margin:6px 0 0;color:#e8d9a7}
+nav{background:#fff;box-shadow:0 2px 10px #0001;position:sticky;top:0;z-index:2}
+nav .inner{max-width:1050px;margin:auto;padding:12px 16px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+nav a{color:#175844;text-decoration:none;padding:7px 13px;border-radius:8px}nav a:hover{background:#eee5cf}
+main{max-width:1050px;margin:auto;padding:22px 16px}
+.hero{background:linear-gradient(135deg,#ead9a7,#fffaf0);border-radius:18px;padding:28px;margin-bottom:22px;border:1px solid #d8c58e}
+.hero h2{margin-top:0;color:#174f40}.search{display:flex;gap:8px;margin:18px 0}.search input{flex:1;padding:12px;border:1px solid #ccc;border-radius:10px;font-size:16px}.search button{padding:12px 18px;border:0;border-radius:10px;background:#1f6a58;color:white}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{background:white;border:1px solid #ddd7c9;border-radius:14px;padding:18px;box-shadow:0 2px 8px #0000000b}.card h3{margin-top:0;color:#174f40}
+.tag{display:inline-block;background:#e9f1ed;color:#175844;padding:3px 9px;border-radius:20px;margin:3px;font-size:13px}
+footer{text-align:center;padding:28px;background:#123f35;color:white;margin-top:30px}
+.hidden{display:none!important}
+@media(max-width:600px){header h1{font-size:26px}.hero{padding:20px}.search{flex-direction:column}}
+</style>
+</head>
+<body>
+<header><h1>زندگی با حدیث</h1><p>راهی به سوی زندگی بهتر</p></header>
+<nav><div class="inner">
+<a href="#home">خانه</a><a href="#hadith">احادیث</a><a href="#maaref">معارف اسلامی</a><a href="#quran">قرآن و تفسیر</a><a href="#tags">برچسب‌ها</a>
+</div></nav>
+<main id="home">
+<section class="hero">
+<h2>به زندگی با حدیث خوش آمدید</h2>
+<p>مطالبی درباره احادیث، معارف اسلامی، قرآن و تفسیر؛ برای نزدیک‌تر شدن دانش و زندگی روزمره به آموزه‌های دینی.</p>
+</section>
+<div class="search"><input id="search" placeholder="جست‌وجو در مطالب..."><button onclick="render()">جست‌وجو</button></div>
+<section id="posts" class="grid"></section>
+<section id="tags" style="margin-top:28px"><div class="card"><h3>برچسب‌ها</h3><span class="tag">حدیث</span><span class="tag">اسلام</span><span class="tag">قرآن</span><span class="tag">اخلاق</span><span class="tag">زندگی</span></div></section>
+</main>
+<footer>زندگی با حدیث — محتوای دینی و علمی</footer>
+<script>
+const posts=[
+{cat:"حدیث",title:"نیت خوب در کارهای خوب",text:"نیت و انگیزه انسان در ارزشمند شدن کارها نقش مهمی دارد."},
+{cat:"معارف اسلامی",title:"اخلاق در زندگی روزمره",text:"آموزه‌های اخلاقی اسلام می‌توانند در رفتار با خانواده، دوستان و جامعه به کار گرفته شوند."},
+{cat:"قرآن و تفسیر",title:"قرآن؛ کتاب هدایت",text:"نگاهی کوتاه به نقش قرآن در هدایت و رشد انسان."}
+];
+function render(){
+ const q=document.getElementById('search').value.trim().toLowerCase();
+ const list=posts.filter(p=>(p.title+" "+p.text+" "+p.cat).toLowerCase().includes(q));
+ document.getElementById('posts').innerHTML=list.length?list.map(p=>`<article class="card"><span class="tag">${p.cat}</span><h3>${p.title}</h3><p>${p.text}</p><a href="#" onclick="alert('${p.title}\\n\\n${p.text}');return false;">ادامه مطلب ←</a></article>`).join(""):'<div class="card"><h3>نتیجه‌ای پیدا نشد</h3><p>عبارت دیگری را جست‌وجو کنید.</p></div>';
+}
+render();document.getElementById('search').addEventListener('input',render);
+</script>
+</body>
+</html>
