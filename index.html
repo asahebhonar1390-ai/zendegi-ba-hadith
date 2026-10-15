@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>زندگی با حدیث</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#f7f3e8;color:#17352b;line-height:1.9}
+header{background:#123f32;color:#fff;padding:34px 18px;text-align:center}
+header h1{margin:0;font-size:34px}header p{margin:6px 0 0;color:#e8d39a}
+nav{background:#fff;box-shadow:0 2px 12px #0001;position:sticky;top:0;z-index:5}
+nav .inner{max-width:1050px;margin:auto;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:10px}
+nav a{color:#174b3b;text-decoration:none;padding:7px 14px;border-radius:20px}nav a:hover{background:#eee5ce}
+main{max-width:1050px;margin:28px auto;padding:0 16px}
+.hero{background:linear-gradient(135deg,#174d3d,#0e342a);color:#fff;border-radius:24px;padding:42px 25px;text-align:center;box-shadow:0 10px 30px #0002}
+.hero h2{font-size:28px;margin:0 0 8px}.hero p{color:#ead79f;margin:0}
+.search{margin:22px 0;display:flex;gap:8px}.search input{flex:1;padding:13px;border:1px solid #ccc;border-radius:12px;font-size:16px}.search button{padding:0 20px;border:0;border-radius:12px;background:#b18a3a;color:white;font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.card{background:#fff;border:1px solid #e6dfce;border-radius:17px;padding:20px;box-shadow:0 5px 16px #0000000b}
+.card h3{margin-top:0;color:#164b3a}.tag{display:inline-block;background:#f0e6c9;color:#71551d;padding:2px 9px;border-radius:12px;font-size:13px}
+article{margin-top:22px}.hadith{font-size:21px;color:#174b3b;border-right:4px solid #b18a3a;padding:12px 18px;background:#fffaf0;border-radius:10px}
+footer{margin-top:45px;background:#123f32;color:#eee;text-align:center;padding:25px}
+.hidden{display:none!important}
+@media(max-width:600px){header h1{font-size:28px}.hero{padding:30px 18px}.search{flex-direction:column}.search button{padding:11px}}
+</style>
+</head>
+<body>
+<header>
+<h1>زندگی با حدیث</h1>
+<p>راهی به سوی زندگی بهتر</p>
+</header>
+<nav><div class="inner">
+<a href="#home">خانه</a><a href="#hadith">احادیث</a><a href="#maaref">معارف اسلامی</a><a href="#quran">قرآن و تفسیر</a><a href="#tags">برچسب‌ها</a>
+</div></nav>
+<main id="home">
+<section class="hero">
+<h2>با حدیث، زندگی را بهتر بسازیم</h2>
+<p>مطالبی کوتاه و کاربردی از احادیث، معارف اسلامی و قرآن</p>
+</section>
+<div class="search"><input id="search" placeholder="جست‌وجو در مطالب..."><button onclick="searchPosts()">جست‌وجو</button></div>
+<section id="posts" class="grid"></section>
+<section id="hadith" class="grid" style="margin-top:30px">
+<div class="card"><h3>احادیث</h3><p>سخنان نورانی اهل‌بیت علیهم‌السلام و نکته‌های کاربردی برای زندگی.</p></div>
+<div class="card" id="maaref"><h3>معارف اسلامی</h3><p>مطالب ساده و قابل‌فهم درباره اعتقادات و اخلاق اسلامی.</p></div>
+<div class="card" id="quran"><h3>قرآن و تفسیر</h3><p>آشنایی با آیات قرآن و نکته‌های تفسیری.</p></div>
+</section>
+<section id="tags" style="margin-top:30px"><div class="card"><h3>برچسب‌ها</h3><span class="tag">اخلاق</span> <span class="tag">حدیث</span> <span class="tag">قرآن</span> <span class="tag">اهل‌بیت</span></div></section>
+</main>
+<footer>© زندگی با حدیث — محتوای دینی و علمی</footer>
+<script>
+const posts=[
+{cat:"احادیث",title:"ارزش نیت در کارهای خوب",text:"نیت درست می‌تواند به کارهای معمولی ارزش معنوی ببخشد.",tag:"اخلاق"},
+{cat:"معارف اسلامی",title:"چرا مطالعه معارف اسلامی مهم است؟",text:"شناخت بهتر باورها و اخلاق اسلامی می‌تواند به تصمیم‌های بهتر در زندگی کمک کند.",tag:"معارف"},
+{cat:"قرآن و تفسیر",title:"قرآن؛ کتاب هدایت",text:"قرآن انسان را به اندیشه، اخلاق نیک و حرکت در مسیر درست دعوت می‌کند.",tag:"قرآن"}
+];
+function render(list=posts){document.getElementById("posts").innerHTML=list.map(p=>`<article class="card"><span class="tag">${p.cat}</span><h3>${p.title}</h3><p>${p.text}</p><small>#${p.tag}</small></article>`).join("")}
+function searchPosts(){let q=document.getElementById("search").value.trim();if(!q)return render();render(posts.filter(p=>(p.title+p.text+p.cat+p.tag).includes(q)))}
+document.getElementById("search").addEventListener("keydown",e=>{if(e.key==="Enter")searchPosts()});
+render();
+</script>
+</body>
+</html>
